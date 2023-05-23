@@ -38,6 +38,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Users = mongoose.model("User", userSchema); // Use singular "User" for the model name
+const Users = mongoose.model("Users", userSchema); // Use singular "User" for the model name
 
 module.exports = Users;
