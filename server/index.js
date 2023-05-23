@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 //import routes
-const handleRegister = require("./routes/userAuth/register");
-const handleLogin = require("./routes/userAuth/login");
+const handleRegister = require("./routes/users/userAuth/register");
+const handleLogin = require("./routes/users/userAuth/login");
 const handleUserData = require("./routes/userData/userData");
 
 const app = express();
