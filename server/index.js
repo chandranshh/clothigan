@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 //import routes
 const handleRegister = require("./routes/userAuth/register");
 const handleLogin = require("./routes/userAuth/login");
+const handleUserData = require("./routes/userData/userData");
 
 const app = express();
 app.use(express.json());
@@ -28,6 +29,7 @@ require("./connection");
 // Register
 app.use("/auth/register", handleRegister);
 app.use("/auth/login", handleLogin);
+app.use("/user", handleUserData);
 
 //port listening
 const port = process.env.PORT;
