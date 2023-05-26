@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ["Unbounded", "sans-serif"],
+    },
   },
   plugins: [],
 };
