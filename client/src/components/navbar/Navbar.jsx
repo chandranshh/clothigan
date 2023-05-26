@@ -13,13 +13,15 @@ function Navbar() {
         <div>Womens</div>
         <div>Kids</div>
       </div>
-      <div className="flex items-center justify-center flex-grow font-extrabold text-2xl">
-        CLOTHIGAN
+      <div className="flex items-center justify-center flex-grow font-extrabold text-2xl ml-32">
+        <Link to="/">CLOTHIGAN</Link>
       </div>
       <div className="flex gap-5">
         <Link to="/membership">Login/Register</Link>
         <div>Wishlist(0)</div>
-        <div>Cart({cart.cartQuantity})</div>
+        <Link to="/cart">
+          <div>Cart({cart.cartQuantity})</div>
+        </Link>
       </div>
     </div>
   );

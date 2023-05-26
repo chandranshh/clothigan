@@ -4,6 +4,7 @@ import Frontpage from "./pages/frontpage/Frontpage";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import store from "./features/store";
+import Cart from "./pages/cart/Cart";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/membership" element={<RegisterLogin />} />
             <Route path="/products" element={<Frontpage />} />
+            <Route path="/cart" element={<Cart />} />
             <Route exact path="/" element={<Frontpage />} />
           </Routes>
         </Router>

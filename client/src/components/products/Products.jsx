@@ -8,9 +8,6 @@ function Products() {
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.allProducts.products);
-  const cart = useSelector((state) => state.allCartItems);
-
-  console.log(cart);
 
   if (!data) {
     // Data is not yet available, show loading or fallback UI
