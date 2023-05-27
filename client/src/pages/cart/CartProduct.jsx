@@ -23,7 +23,7 @@ function CartProduct({ item }) {
   };
 
   return (
-    <div className="flex my-3 rounded-md m-8 h-[130px] shadow-xl">
+    <div className="flex my-3 rounded-lg m-8 h-[130px] shadow-md">
       <div className="mt-8 h-[110px] w-[110px]">
         <img className="p-4" src={item.image} alt={item.id} />
       </div>

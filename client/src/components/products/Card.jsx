@@ -15,16 +15,19 @@ function Card({ product }) {
           alt={product.title}
         />
       </div>
-      <div>
-        <div className="text-[14px] text-center pt-2">{product.title}</div>
+      <div className="h-[20%] mt-4 py-3 p-3">
+        <div>
+          <div className="text-[16px] text-center pt-2 bold">
+            {product.title}
+          </div>
+        </div>
+        <div className="text-[15px] text-center pt-2 mb-6">
+          <span className="block">Rs. {product.price}</span>
+        </div>
       </div>
-      <div className="text-[15px] text-center pt-2">Rs. {product.price}</div>
-      <div className="p-5 flex justify-between">
-        <Button size="lg" onClick={() => dispatch(addToCart(product))}>
-          <span className="text-[15px]">Add to Cart</span>
-        </Button>
-        <Button size="lg">
-          <span className="text-[15px]">Buy Now</span>
+      <div className="justify-center mt-14 flex">
+        <Button size="md" onClick={() => dispatch(addToCart(product))}>
+          <span className="text-[15px] block">Add to Cart</span>
         </Button>
       </div>
     </div>
