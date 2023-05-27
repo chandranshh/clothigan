@@ -24,15 +24,15 @@ function CartProduct({ item }) {
 
   return (
     <div className="flex my-3 rounded-md m-8 h-[130px] shadow-xl">
-      <div className="h-[100px] w-[100px]">
+      <div className="mt-8 h-[110px] w-[110px]">
         <img className="p-4" src={item.image} alt={item.id} />
       </div>
-      <div className="mt-10">
+      <div className="w-full mt-10 ml-5">
         <div>{item.title}</div>
         <div>Rs. {item.price}</div>
       </div>
       <div className="flex flex-col">
-        <div className="flex gap-5 inline-block mt-[5rem]">
+        <div className="flex gap-5 inline-block mt-[5rem] mr-3">
           <Button size="sm" onClick={handleDecreaseQuantity}>
             -
           </Button>
