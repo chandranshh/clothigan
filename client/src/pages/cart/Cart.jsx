@@ -5,7 +5,9 @@ import { Button } from "@chakra-ui/react";
 
 function Cart() {
   const cartItems = useSelector((state) => state.allCartItems.cartItems);
-  const cartPrice = useSelector((state) => state.allCartItems.cartPrice);
+  const cartPrice = useSelector((state) =>
+    state.allCartItems.cartPrice.toFixed(2)
+  );
 
   return (
     <div className="font-sans">
@@ -21,7 +23,7 @@ function Cart() {
             <CartProduct key={item?.id} item={item} />
           ))}
         </div>
-        <div className=" rounded-lg w-[28%] shadow-slate-600 max-h-[35rem] flex flex-col justify-between">
+        <div className="rounded-lg w-[28%] shadow-slate-600 max-h-[35rem] flex flex-col justify-between">
           <div className="py-4 text-center rounded-lg bg-gray-200">
             <span className="text-[20px]">Cart Details</span>
           </div>
@@ -43,7 +45,7 @@ function Cart() {
             </div>
             <div className="p-4 flex justify-between">
               <span className="block">Total MRP </span>
-              <span className="pl-[12rem] ">Rs. {cartPrice}</span>
+              <span className="pl-[12rem]">Rs. {cartPrice}</span>
             </div>
             <div className="flex justify-center py-2">
               <Button
