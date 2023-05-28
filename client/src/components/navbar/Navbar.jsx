@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { userAuthLogout } from "../../features/slices/authSlice";
 
 function Navbar() {
+  const userState = useSelector((state) => state.userAuthLogin);
   const cart = useSelector((state) => state.allCartItems);
+
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(userAuthLogout());
+  };
 
   console.log(cart);
 
@@ -17,7 +25,14 @@ function Navbar() {
         <Link to="/">CLOTHIGAN</Link>
       </div>
       <div className="flex gap-5">
-        <Link to="/membership">Login/Register</Link>
+        {!userState.isAuthenticated && (
+          <Link to="/membership">Login/Register</Link>
+        )}
+        {userState.isAuthenticated && (
+          <div className="cursor-pointer" onClick={logoutHandler}>
+            Logout
+          </div>
+        )}
         <div>Wishlist(0)</div>
         <Link to="/cart">
           <div>Cart({cart.cartQuantity})</div>
