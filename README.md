@@ -1,4 +1,7 @@
 # clothigan
+
+```The testing vercel link won't work past login page as I have not yet deployed the backend.```
+
 MERN eCommerce Website using Redux Toolkit with Persist Redux
 
 So I made this no so complete MERN E-commerce website which is quite dynamic and functional. I implemented Redux toolkit with persist storage to save the items in the cart so the user dont need to re-add the products in their cart again and again.
