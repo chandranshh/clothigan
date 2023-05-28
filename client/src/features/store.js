@@ -6,6 +6,7 @@ import setProducts from "./slices/productSlice";
 import cartSliceReducer from "./slices/cartSlice";
 import authSliceReducer from "./slices/authSlice";
 import { userApi } from "./slices/userAPI";
+import userDataSlice from "./slices/userDataSlice";
 
 const persistConfigCart = {
   key: "cart",
@@ -31,6 +32,7 @@ const store = configureStore({
     userAuthLogin: persistedAuthSliceReducer,
     allCartItems: persistedCartSliceReducer,
     allProducts: setProducts,
+    fetchedUserData: userDataSlice,
     [productApi.reducerPath]: productApi.reducer,
     [particularProductApi.reducerPath]: particularProductApi.reducer,
     [userApi.reducerPath]: userApi.reducer,

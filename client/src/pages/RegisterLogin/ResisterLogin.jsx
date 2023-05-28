@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useUserDataQuery } from "../../features/slices/userAPI";
 import axios from "axios";
+import { setUserData } from "../../features/slices/userDataSlice";
 
 function ResisterLogin() {
   const [registerData, setRegisterData] = useState({
@@ -14,10 +15,9 @@ function ResisterLogin() {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  const authState = useSelector((state) => state.userAuthLogin);
+  const authState = useSelector((state) => state.userAuthLogin); // Access the userAuthLogin state
   const navigate = useNavigate();
-
-  //console.log(authState);
+  const dispatch = useDispatch(); // Access the dispatch function
 
   const userAuth = async (email, password) => {
     try {
@@ -32,8 +32,6 @@ function ResisterLogin() {
       setErrorMessage(error.response.data.error); // Set the error message from the response
     }
   };
-
-  const dispatch = useDispatch();
 
   const handleRegisterData = (event) => {
     const { name, value } = event.target;
@@ -53,8 +51,15 @@ function ResisterLogin() {
     }
   }, [authState.isAuthenticated, navigate]);
 
-  const data = useUserDataQuery(authState._id);
-  console.log(data);
+  //dispatch setUserData
+
+  const userDataQuery = useUserDataQuery(authState._id);
+
+  useEffect(() => {
+    if (userDataQuery.isLoading === false && userDataQuery.isSuccess) {
+      dispatch(setUserData(userDataQuery.data));
+    }
+  }, [dispatch, userDataQuery]);
 
   return (
     <div className="bg-pink-200 h-screen flex justify-center items-center">
