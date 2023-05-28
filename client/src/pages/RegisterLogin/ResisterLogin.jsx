@@ -1,5 +1,5 @@
 import { Checkbox, Input, Button } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { userAuthLogin } from "../../features/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,6 @@ function ResisterLogin() {
         password,
       });
       dispatch(userAuthLogin(response.data));
-      navigate("/"); // Redirect to the desired path
       return response.data;
     } catch (error) {
       return error;
@@ -43,6 +42,12 @@ function ResisterLogin() {
   const handleRegister = async () => {
     await userAuth(registerData.email, registerData.password);
   };
+
+  useEffect(() => {
+    if (authState.isAuthenticated) {
+      navigate("/"); //redirect to landing page after a successful login
+    }
+  }, [authState.isAuthenticated, navigate]);
 
   return (
     <div className="bg-pink-200 h-screen flex justify-center items-center">
