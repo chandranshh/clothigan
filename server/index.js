@@ -7,6 +7,7 @@ const dotenv = require("dotenv");
 //import routes for user handleing
 const handleRegister = require("./routes/users/userAuth/register");
 const handleLogin = require("./routes/users/userAuth/login");
+const handleLogout = require("./routes/users/userAuth/logout");
 const handleUserData = require("./routes/users/userData/userData");
 
 //import routes for product handleing
@@ -32,7 +33,10 @@ require("./connection");
 // Register
 app.use("/auth/register", handleRegister);
 app.use("/auth/login", handleLogin);
+app.use("/auth/logout", handleLogout);
 app.use("/user", handleUserData);
+
+// Product
 app.use("/products", handleProduct);
 
 //port listening
