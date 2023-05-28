@@ -1,11 +1,36 @@
 import { Checkbox, Input, Button } from "@chakra-ui/react";
 import { useState } from "react";
+import { userAuthLogin } from "../../features/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function ResisterLogin() {
   const [registerData, setRegisterData] = useState({
     email: "",
     password: "",
   });
+
+  const authState = useSelector((state) => state.userAuthLogin);
+  const navigate = useNavigate();
+
+  console.log(authState);
+
+  const userAuth = async (email, password) => {
+    try {
+      const response = await axios.post("http://localhost:3001/auth/login", {
+        email,
+        password,
+      });
+      dispatch(userAuthLogin(response.data));
+      navigate("/"); // Redirect to the desired path
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  };
+
+  const dispatch = useDispatch();
 
   const handleRegisterData = (event) => {
     const { name, value } = event.target;
@@ -15,8 +40,8 @@ function ResisterLogin() {
     }));
   };
 
-  const handleRegister = () => {
-    console.log(registerData);
+  const handleRegister = async () => {
+    await userAuth(registerData.email, registerData.password);
   };
 
   return (
