@@ -12,5 +12,8 @@ module.exports = {
       sans: ["Unbounded", "sans-serif"],
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwind-scrollbar-hide"),
+    // ...
+  ],
 };

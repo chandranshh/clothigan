@@ -18,7 +18,7 @@ function Products() {
   dispatch(setProducts(data));
 
   return (
-    <div className="overflow-y-auto pt-16 ml-2 pl-64 h-screen w-screen">
+    <div className="overflow-y-auto scrollbar-hide pt-16 ml-2 pl-64 h-screen w-screen">
       <div className="p-5 grid grid-cols-4 gap-4">
         {products?.map((product) => (
           <Card product={product} key={product.id} />
