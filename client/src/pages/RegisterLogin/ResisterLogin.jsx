@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { userAuthLogin } from "../../features/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useUserDataQuery } from "../../features/slices/userAPI";
 import axios from "axios";
 
 function ResisterLogin() {
@@ -11,10 +12,12 @@ function ResisterLogin() {
     password: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const authState = useSelector((state) => state.userAuthLogin);
   const navigate = useNavigate();
 
-  console.log(authState);
+  //console.log(authState);
 
   const userAuth = async (email, password) => {
     try {
@@ -23,9 +26,10 @@ function ResisterLogin() {
         password,
       });
       dispatch(userAuthLogin(response.data));
+      console.log(response.data);
       return response.data;
     } catch (error) {
-      return error;
+      setErrorMessage(error.response.data.error); // Set the error message from the response
     }
   };
 
@@ -39,8 +43,8 @@ function ResisterLogin() {
     }));
   };
 
-  const handleRegister = async () => {
-    await userAuth(registerData.email, registerData.password);
+  const handleRegister = () => {
+    userAuth(registerData.email, registerData.password);
   };
 
   useEffect(() => {
@@ -48,6 +52,9 @@ function ResisterLogin() {
       navigate("/"); //redirect to landing page after a successful login
     }
   }, [authState.isAuthenticated, navigate]);
+
+  const data = useUserDataQuery(authState._id);
+  console.log(data);
 
   return (
     <div className="bg-pink-200 h-screen flex justify-center items-center">
@@ -100,6 +107,9 @@ function ResisterLogin() {
               Login
             </Button>
           </div>
+          {errorMessage && ( // Conditionally render the error message
+            <div className="mt-4 text-red-500">{errorMessage}</div>
+          )}
         </div>
       </div>
     </div>

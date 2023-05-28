@@ -12,7 +12,7 @@ function Navbar() {
     dispatch(userAuthLogout());
   };
 
-  console.log(cart);
+  //console.log(cart);
 
   return (
     <div className="flex pl-4 pb-3 pr-4 pt-4 w-screen fixed z-10 bg-white ">
