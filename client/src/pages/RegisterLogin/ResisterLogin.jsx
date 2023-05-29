@@ -26,7 +26,7 @@ function ResisterLogin() {
         password,
       });
       dispatch(userAuthLogin(response.data));
-      console.log(response.data);
+      //console.log(response.data);
       return response.data;
     } catch (error) {
       setErrorMessage(error.response.data.error); // Set the error message from the response
@@ -45,22 +45,24 @@ function ResisterLogin() {
     userAuth(registerData.email, registerData.password);
   };
 
-  // useEffect(() => {
-  //   if (authState.isAuthenticated) {
-  //     navigate("/"); //redirect to landing page after a successful login
-  //   }
-  // }, [authState.isAuthenticated, navigate]);
-
   //dispatch setUserData
-
-  const { data } = useUserDataQuery(authState._id);
+  const { data, isSuccess } = useUserDataQuery(authState._id);
 
   useEffect(() => {
-    if (data && authState.isAuthenticated) {
+    if (isSuccess) {
       dispatch(setUserData(data));
       navigate("/");
     }
-  }, [data, dispatch, navigate]);
+  }, [isSuccess, data, dispatch, navigate]);
+
+  // useEffect(() => {
+  //   if(data){
+  //     if (authState.isAuthenticated) {
+  //       dispatch(setUserData(data));
+  //       navigate("/"); //redirect to landing page after a successful login
+  //     }
+  //   }
+  // }, [data, dispatch, authState.isAuthenticated, navigate]);
 
   return (
     <div className="bg-pink-200 h-screen flex justify-center items-center">
