@@ -7,8 +7,6 @@ function Navbar() {
   const cart = useSelector((state) => state.allCartItems);
   const userData = useSelector((state) => state.fetchedUserData.userData.user);
 
-  console.log(userData);
-
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
