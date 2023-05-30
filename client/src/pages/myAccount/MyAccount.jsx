@@ -5,8 +5,10 @@ import { Input, Button } from "@chakra-ui/react";
 import Navbar from "../../components/navbar/Navbar";
 import { useUserDataQuery } from "../../features/slices/userAPI";
 import { setUserData } from "../../features/slices/userDataSlice";
+import { useNavigate } from "react-router-dom";
 
 function MyAccount() {
+  const navigate = useNavigate();
   const authState = useSelector((state) => state.userAuthLogin);
   const { data, isSuccess } = useUserDataQuery(authState._id);
   const dispatch = useDispatch();
@@ -28,6 +30,12 @@ function MyAccount() {
     }));
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(setUserData(data));
+    }
+  }, [isSuccess, data, dispatch]);
+
   const onSubmitHandler = () => {
     setEditMode(false);
     axios
@@ -38,18 +46,14 @@ function MyAccount() {
       .then((response) => {
         // Handle the response if needed
         console.log("Data updated successfully", response.data);
+        window.location.reload();
       })
       .catch((error) => {
         // Handle the error if needed
         console.log("Error updating data:", error);
       });
+    navigate("/account");
   };
-
-  useEffect(() => {
-    if (isSuccess) {
-      dispatch(setUserData(data));
-    }
-  }, [isSuccess, data, dispatch]);
 
   useEffect(() => {
     console.log(toBeSendData);
