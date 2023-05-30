@@ -11,12 +11,14 @@ const jwt_secret = process.env.JWT_SECRET;
 
 router.post("/", async (req, res) => {
   const {
+    fullName = "",
     email,
     password,
     profilePicture = "",
     phone,
     address,
     address2 = "",
+    isAdmin = false,
   } = req.body;
 
   try {
@@ -32,12 +34,14 @@ router.post("/", async (req, res) => {
 
     // Create a new user object
     const newUser = new Users({
+      fullName,
       email,
       password: hashedPassword,
       profilePicture,
       phone,
       address,
       address2,
+      isAdmin,
     });
 
     // Save the user to the database

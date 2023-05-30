@@ -31,8 +31,15 @@ router.put("/:userId", async (req, res) => {
       return res.status(400).json({ error: "No user ID received" });
     }
 
-    const { email, password, profilePicture, phone, address, address2 } =
-      req.body;
+    const {
+      fullName,
+      email,
+      password,
+      profilePicture,
+      phone,
+      address,
+      address2,
+    } = req.body;
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -41,6 +48,7 @@ router.put("/:userId", async (req, res) => {
       { _id: userId },
       {
         $set: {
+          fullName: fullName || undefined,
           email: email || undefined,
           password: password ? hashedPassword : undefined,
           profilePicture: profilePicture || undefined,
