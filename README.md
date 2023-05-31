@@ -9,7 +9,7 @@ So I made this no so complete MERN E-commerce website which is quite dynamic and
 ```Please note that this project is still a work in progress and several features are missing or incomplete. However, it serves as a good starting point and can be further developed to meet specific requirements.```
 
 Missing features :
-- no login/register auth to prevent unauthorised access to the site.
+- no login/register auth to prevent unauthorised access to the site. (need to add an auth tokenised middleware)
 - side bar functionality is still missing.
 - mens, womens and kids page is missing
 
